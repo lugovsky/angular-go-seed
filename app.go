@@ -56,7 +56,6 @@ func booksApi(r martini.Router) {
 func currencyApi(r martini.Router) {
     r.Group("/currency", func(r martini.Router) {
         r.Get("/rates", func() string {
-            gorequest.New().Get("http://example.com/").End()
             var _, body, _ = request.Get("http://api.fixer.io/latest").End()
             return body
         })
