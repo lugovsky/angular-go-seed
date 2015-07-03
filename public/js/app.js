@@ -1,9 +1,25 @@
 // Declare app level module which depends on filters, and services
-angular.module('angular-go-seed', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date'])
-  .config(['$routeProvider', function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/home/home.html', 
-        controller: 'HomeController'})
-      .otherwise({redirectTo: '/'});
-  }]);
+
+(function(angular) {
+  'use strict';
+
+  angular.module('angularGoSeed', [
+
+      // Bower dependencies
+      'ui.router',
+      'ui.bootstrap',
+
+      // Common modules
+
+      // App modules
+      'angularGoSeed.home'
+
+  ])
+      .config(appConfig);
+
+  appConfig.$inject = ['$urlRouterProvider'];
+  function appConfig($urlRouterProvider) {
+    $urlRouterProvider.otherwise('/home');
+  }
+
+})(angular);

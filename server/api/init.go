@@ -13,7 +13,7 @@ func init() {
 	m = martini.New()
 	m.Use(martini.Recovery())
 	m.Use(martini.Logger())
-	m.Use(martini.Static("../public", martini.StaticOptions{ Exclude: API_ENDPOINT }))
+	m.Use(martini.Static("public", martini.StaticOptions{ Exclude: API_ENDPOINT }))
 	// map json encoder
 	m.Use(func(c martini.Context, w http.ResponseWriter) {
 		c.MapTo(encoder.JsonEncoder{}, (*encoder.Encoder)(nil))
