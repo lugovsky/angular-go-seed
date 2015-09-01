@@ -1,3 +1,21 @@
-<div class="row">
-  <div class="col-xs-12" ng-repeat="book in books">{{book.Name}}</div>
+<h1 class="page-header">Books for sale</h1>
+<div class="books-container table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Cover</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="book in books">
+        <td><img ng-src="{{ book.CoverUrl | imagePath }}" width="150px"/></td>
+        <td ng-bind="book.Name"></td>
+        <td ng-bind="book.Description"></td>
+        <td>${{book.Price}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

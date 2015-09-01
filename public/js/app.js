@@ -12,6 +12,7 @@
       // Common modules
 
       // App modules
+      'angularGoSeed.common',
       'angularGoSeed.home'
 
   ])
