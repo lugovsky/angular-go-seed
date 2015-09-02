@@ -16,11 +16,17 @@
       'angularGoSeed.home'
 
   ])
-      .config(appConfig);
+      .config(appConfig)
+      .run(appRun);
 
   appConfig.$inject = ['$urlRouterProvider'];
   function appConfig($urlRouterProvider) {
     $urlRouterProvider.otherwise('/home');
+  }
+
+  appRun.$inject = ['searchBarModel'];
+  function appRun() {
+    // Do nothing. Inject search bar model to initialize search behavior
   }
 
 })(angular);

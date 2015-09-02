@@ -10,10 +10,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="book in books">
+      <tr ng-repeat="book in books | filter:$searchBarModel.filterObject track by book.Name">
         <td><img ng-src="{{ book.CoverUrl | imagePath }}" width="150px"/></td>
-        <td ng-bind="book.Name"></td>
-        <td ng-bind="book.Description"></td>
+        <td ng-bind-html="book.Name | wrapHighlightToken:$searchBarModel.searchString"></td>
+        <td ng-bind-html="book.Description | wrapHighlightToken:$searchBarModel.searchString"></td>
         <td>${{book.Price}}</td>
       </tr>
     </tbody>
