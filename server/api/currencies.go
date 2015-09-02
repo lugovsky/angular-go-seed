@@ -13,7 +13,7 @@ func init() {
 func initCurrencyApi(r martini.Router) {
 	r.Group("/currencies", func(r martini.Router) {
 		r.Get("", func() string {
-			var _, body, _ = request.Get("http://api.fixer.io/latest").End()
+			var _, body, _ = request.Get("http://api.fixer.io/latest?base=USD").End()
 			return body
 		})
 	})

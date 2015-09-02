@@ -25,7 +25,12 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Dashboard</a></li>
+        <li dropdown>
+          <a href="#" dropdown-toggle>Currency: {{$currencyDropdownModel.selectedCurrency.currency}} <b class="caret"></b></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a ng-repeat="curr in $currencyDropdownModel.items" ng-click="$currencyDropdownModel.selectedCurrency = curr">{{curr.currency}}</a></li>
+          </ul>
+        </li>
         <li><a href="#">Settings</a></li>
         <li><a href="#">Profile</a></li>
         <li><a href="#">Help</a></li>
@@ -79,17 +84,20 @@
 <script src="lib/angular-ui-date/src/date.js"></script>
 <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
 
+<script src="js/model/model.module.js"></script>
+<script src="js/model/books.js"></script>
+<script src="js/model/currency.js"></script>
+
 <script src="js/common/common.module.js"></script>
 <script src="js/common/filter/imagePath.js"></script>
 <script src="js/common/filter/wrapHighlightToken.js"></script>
+<script src="js/common/filter/convertPriceCurrency.js"></script>
 <script src="js/common/service/searchBarModel.js"></script>
+<script src="js/common/service/currencyDropdownModel.js"></script>
 
 <script src="js/app.js"></script>
 <script src="js/config.js"></script>
 <script src="js/util.js"></script>
-
-<script src="js/model/model.module.js"></script>
-<script src="js/model/books.js"></script>
 
 <script src="js/home/home.js"></script>
 

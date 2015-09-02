@@ -24,7 +24,7 @@
     $urlRouterProvider.otherwise('/home');
   }
 
-  appRun.$inject = ['searchBarModel'];
+  appRun.$inject = ['searchBarModel', 'currencyDropdownModel'];
   function appRun() {
     // Do nothing. Inject search bar model to initialize search behavior
   }
