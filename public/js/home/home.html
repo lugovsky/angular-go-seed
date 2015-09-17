@@ -14,7 +14,8 @@
         <td><img ng-src="{{ book.CoverUrl | imagePath }}" width="150px"/></td>
         <td ng-bind-html="book.Name | wrapHighlightToken:$searchBarModel.searchString"></td>
         <td ng-bind-html="book.Description | wrapHighlightToken:$searchBarModel.searchString"></td>
-        <td>{{$currencyDropdownModel.selectedCurrency.currency}} {{book.Price | convertPriceCurrency | number:2}}</td>
+        <td>{{$currencyDropdownModel.selectedCurrency.currency}} {{book.Price | convertPriceCurrency:$currencyDropdownModel.selectedCurrency | number:2}}</td>
+        <td><button class="btn btn-info">Add to cart</button></td>
       </tr>
     </tbody>
   </table>

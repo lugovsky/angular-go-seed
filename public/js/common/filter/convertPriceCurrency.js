@@ -8,10 +8,10 @@
   angular.module('angularGoSeed.common')
       .filter('convertPriceCurrency', convertPriceCurrency);
 
-  convertPriceCurrency.$inject = ['currencyDropdownModel'];
-  function convertPriceCurrency(currencyDropdownModel) {
-    return function(input) {
-      return input * currencyDropdownModel.selectedCurrency.rate;
+  convertPriceCurrency.$inject = [];
+  function convertPriceCurrency() {
+    return function(input, selectedCurrency) {
+      return input * selectedCurrency.rate;
     }
   }
 })(angular);
