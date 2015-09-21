@@ -1,8 +1,15 @@
 package main
 
-import "./api"
+import (
+    "./api"
+    "github.com/jessevdk/go-flags"
+)
 
 func main() {
-    api.StartMartini()
+    var appOpts struct {
+        Dev []bool `short:"d" long:"dev" description:"Use dev settings"`
+    }
+    flags.Parse(&appOpts)
+    api.StartMartini(len(appOpts.Dev) > 0 && appOpts.Dev[0])
 }
 
