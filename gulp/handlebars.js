@@ -8,14 +8,15 @@ var through = require('through2');
 var handlebars = require('gulp-compile-handlebars');
 var rename = require('gulp-rename');
 
-var u = require('./util');
+var u = require('./_util');
 
 
 gulp.task('compileIndex', function(done) {
   u.getSortedAppJsFiles(function(libFiles) {
     gulp.src('./public/index.hbs')
-        .pipe(handlebars({ vendorJs: libFiles, appJs: u.getSortedLibJsFiles() }))
+        .pipe(handlebars({ appJs: libFiles, vendorJs: u.getSortedLibJsFiles() }))
         .pipe(rename('index.html'))
-        .pipe(gulp.dest('./public'));
+        .pipe(gulp.dest('./public'))
+        .on('end', done);
   });
 });
