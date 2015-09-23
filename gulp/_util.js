@@ -23,3 +23,11 @@ exports.getSortedAppJsFiles = function(cb) {
     cb(appJsFiles);
   });
 };
+
+exports.getSortedAppJsFilesForBuild = function(cb) {
+  exports.getSortedAppJsFiles(function(files) {
+    cb(files.map(function(f) {
+      return './public/' + f;
+    }));
+  });
+};
