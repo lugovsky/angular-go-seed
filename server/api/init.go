@@ -4,18 +4,20 @@ import (
 	"github.com/go-martini/martini"
 	"github.com/codegangsta/martini-contrib/encoder"
 	"net/http"
+	"../common"
 )
 
 var m *martini.Martini
-var isDevelopment bool
+var isDevelopment = common.Settings.IsDev
 const API_ENDPOINT = "/api"
 
 func init() {
 	m = martini.New()
 	m.Use(martini.Recovery())
 	m.Use(martini.Logger())
-	m.Use(martini.Static("public", martini.StaticOptions{ Exclude: API_ENDPOINT, Expires: staticExpiresHeader }))
-	m.Use(martini.Static(".", martini.StaticOptions{ Exclude: API_ENDPOINT, Expires: staticExpiresHeader }))
+
+	setupStatic()
+
 	// map json encoder
 	m.Use(func(c martini.Context, w http.ResponseWriter) {
 		c.MapTo(encoder.JsonEncoder{}, (*encoder.Encoder)(nil))
@@ -29,6 +31,13 @@ func init() {
 	m.Action(r.Handle)
 }
 
+func setupStatic() {
+	if (isDevelopment) {
+		m.Use(martini.Static("public", martini.StaticOptions{ Exclude: API_ENDPOINT, Expires: staticExpiresHeader }))
+	}
+	m.Use(martini.Static("dist", martini.StaticOptions{ Exclude: API_ENDPOINT, Expires: staticExpiresHeader }))
+}
+
 func staticExpiresHeader() string {
 	if (isDevelopment) {
 		return "0"
@@ -37,7 +46,6 @@ func staticExpiresHeader() string {
 	}
 }
 
-func StartMartini(isDev bool) {
-	isDevelopment = isDev
+func StartMartini() {
 	m.Run()
 }
